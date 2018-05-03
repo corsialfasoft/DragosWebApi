@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RICHIESTEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OrdiniSet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataOrdine" Type="date" />
+        </EntityType>
+        <EntityType Name="OridiniProdotti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrdini" Type="int" Nullable="false" />
+          <Property Name="idProdotti" Type="int" Nullable="false" />
+          <Property Name="quantita" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProdottiSet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descrizione" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="giacenza" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__OridiniPr__idOrd__276EDEB3">
+          <End Role="OrdiniSet" Type="Self.OrdiniSet" Multiplicity="1" />
+          <End Role="OridiniProdotti" Type="Self.OridiniProdotti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdiniSet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OridiniProdotti">
+              <PropertyRef Name="idOrdini" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OridiniPr__idPro__286302EC">
+          <End Role="ProdottiSet" Type="Self.ProdottiSet" Multiplicity="1" />
+          <End Role="OridiniProdotti" Type="Self.OridiniProdotti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdottiSet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OridiniProdotti">
+              <PropertyRef Name="idProdotti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RICHIESTEModelStoreContainer">
+          <EntitySet Name="OrdiniSet" EntityType="Self.OrdiniSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OridiniProdotti" EntityType="Self.OridiniProdotti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProdottiSet" EntityType="Self.ProdottiSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OridiniPr__idOrd__276EDEB3" Association="Self.FK__OridiniPr__idOrd__276EDEB3">
+            <End Role="OrdiniSet" EntitySet="OrdiniSet" />
+            <End Role="OridiniProdotti" EntitySet="OridiniProdotti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OridiniPr__idPro__286302EC" Association="Self.FK__OridiniPr__idPro__286302EC">
+            <End Role="ProdottiSet" EntitySet="ProdottiSet" />
+            <End Role="OridiniProdotti" EntitySet="OridiniProdotti" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RICHIESTEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RICHIESTEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OrdiniSet" EntityType="RICHIESTEModel.OrdiniSet" />
+          <EntitySet Name="OridiniProdotti" EntityType="RICHIESTEModel.OridiniProdotti" />
+          <EntitySet Name="ProdottiSet" EntityType="RICHIESTEModel.ProdottiSet" />
+          <AssociationSet Name="FK__OridiniPr__idOrd__276EDEB3" Association="RICHIESTEModel.FK__OridiniPr__idOrd__276EDEB3">
+            <End Role="OrdiniSet" EntitySet="OrdiniSet" />
+            <End Role="OridiniProdotti" EntitySet="OridiniProdotti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OridiniPr__idPro__286302EC" Association="RICHIESTEModel.FK__OridiniPr__idPro__286302EC">
+            <End Role="ProdottiSet" EntitySet="ProdottiSet" />
+            <End Role="OridiniProdotti" EntitySet="OridiniProdotti" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="OrdiniSet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataOrdine" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OridiniProdotti" Relationship="RICHIESTEModel.FK__OridiniPr__idOrd__276EDEB3" FromRole="OrdiniSet" ToRole="OridiniProdotti" />
+        </EntityType>
+        <EntityType Name="OridiniProdotti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrdini" Type="Int32" Nullable="false" />
+          <Property Name="idProdotti" Type="Int32" Nullable="false" />
+          <Property Name="quantita" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrdiniSet" Relationship="RICHIESTEModel.FK__OridiniPr__idOrd__276EDEB3" FromRole="OridiniProdotti" ToRole="OrdiniSet" />
+          <NavigationProperty Name="ProdottiSet" Relationship="RICHIESTEModel.FK__OridiniPr__idPro__286302EC" FromRole="OridiniProdotti" ToRole="ProdottiSet" />
+        </EntityType>
+        <EntityType Name="ProdottiSet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descrizione" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="giacenza" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OridiniProdotti" Relationship="RICHIESTEModel.FK__OridiniPr__idPro__286302EC" FromRole="ProdottiSet" ToRole="OridiniProdotti" />
+        </EntityType>
+        <Association Name="FK__OridiniPr__idOrd__276EDEB3">
+          <End Type="RICHIESTEModel.OrdiniSet" Role="OrdiniSet" Multiplicity="1" />
+          <End Type="RICHIESTEModel.OridiniProdotti" Role="OridiniProdotti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdiniSet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OridiniProdotti">
+              <PropertyRef Name="idOrdini" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OridiniPr__idPro__286302EC">
+          <End Type="RICHIESTEModel.ProdottiSet" Role="ProdottiSet" Multiplicity="1" />
+          <End Type="RICHIESTEModel.OridiniProdotti" Role="OridiniProdotti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdottiSet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OridiniProdotti">
+              <PropertyRef Name="idProdotti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RICHIESTEModelStoreContainer" CdmEntityContainer="RICHIESTEEntities">
+          <EntitySetMapping Name="OrdiniSet">
+            <EntityTypeMapping TypeName="RICHIESTEModel.OrdiniSet">
+              <MappingFragment StoreEntitySet="OrdiniSet">
+                <ScalarProperty Name="dataOrdine" ColumnName="dataOrdine" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OridiniProdotti">
+            <EntityTypeMapping TypeName="RICHIESTEModel.OridiniProdotti">
+              <MappingFragment StoreEntitySet="OridiniProdotti">
+                <ScalarProperty Name="quantita" ColumnName="quantita" />
+                <ScalarProperty Name="idProdotti" ColumnName="idProdotti" />
+                <ScalarProperty Name="idOrdini" ColumnName="idOrdini" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProdottiSet">
+            <EntityTypeMapping TypeName="RICHIESTEModel.ProdottiSet">
+              <MappingFragment StoreEntitySet="ProdottiSet">
+                <ScalarProperty Name="giacenza" ColumnName="giacenza" />
+                <ScalarProperty Name="descrizione" ColumnName="descrizione" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
