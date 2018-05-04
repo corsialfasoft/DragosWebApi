@@ -65,9 +65,11 @@ namespace DragosWebApi.Models {
         public void Del(int id){ 
             using (db = new RICHIESTEEntities()) {
 			    ProdottiSet elimina = db.ProdottiSet.Find(id);
-			    db.ProdottiSet.Remove(elimina);
-                db.SaveChanges();
-			    }   
+                if(elimina!=null){ 
+			        db.ProdottiSet.Remove(elimina);
+                    db.SaveChanges();
+                }
+			}   
         }   
         public void Add(Prodotto nuovo){
             using (db = new RICHIESTEEntities()) {

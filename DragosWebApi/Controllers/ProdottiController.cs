@@ -11,18 +11,18 @@ namespace DragosWebApi.Controllers {
         
         DomainModel dm = new DomainModel();
         // GET api/<controller>
-        public IEnumerable<string> Get() {
-           
+        public IEnumerable<Prodotto> Get() {
+            return dm.Search("");
         }
 
         // GET api/<controller>/5
-        public string Get(int id) {
-            
+        public Prodotto Get(int id) {
+            return dm.Search(id);
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value) {
-            
+        public void Post([FromBody]Prodotto nuovo) {
+            dm.Add(nuovo);
         }
 
         // PUT api/<controller>/5
@@ -31,7 +31,7 @@ namespace DragosWebApi.Controllers {
 
         // DELETE api/<controller>/5
         public void Delete(int id) {
-           
+            dm.Del(id);
         }
     }
 }
